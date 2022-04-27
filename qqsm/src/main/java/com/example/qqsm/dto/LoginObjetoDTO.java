@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginObjetoDTO {
     private String usuario;
-    private String contraseña;
+    private String password;
 }
