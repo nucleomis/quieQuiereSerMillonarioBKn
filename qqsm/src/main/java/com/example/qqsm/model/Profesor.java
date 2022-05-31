@@ -1,20 +1,17 @@
 package com.example.qqsm.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "profesor")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Profesor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idprofesor", nullable = false)
+    @Column(name = "idprofesor")
     private Integer id;
 
     @Column(name = "nombre", nullable = false, length = 45)
@@ -35,13 +32,17 @@ public class Profesor {
     @Column(name = "password", nullable = false, length = 45)
     private String password;
 
-    public Profesor(String nombre, String apellido, String email, String user, String password) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.user = user;
-        this.password = password;
-    }
+    @ManyToMany
+    @JoinTable(name = "materia_has_profesor",
+            joinColumns = @JoinColumn(name = "profesor_idprofesor"),
+            inverseJoinColumns = @JoinColumn(name = "materia_idmateria"))
+    private List<Materia> materias = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "juego_has_profesor",
+            joinColumns = @JoinColumn(name = "profesor_idprofesor"),
+            inverseJoinColumns = @JoinColumn(name = "juego_idjuego"))
+    private List<Juego> juegos = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -97,6 +98,22 @@ public class Profesor {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
+    }
+
+    public List<Juego> getJuegos() {
+        return juegos;
+    }
+
+    public void setJuegos(List<Juego> juegos) {
+        this.juegos = juegos;
     }
 
 }

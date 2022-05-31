@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class LoginDTO {
 
     private Boolean dpoLogin;
-    private Long dpoId;
+    private Integer dpoId;
     private Boolean usuario;
     private Boolean contraseña;
 }

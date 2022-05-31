@@ -1,10 +1,12 @@
 package com.example.qqsm.service;
 
+import com.example.qqsm.model.Juego;
 import com.example.qqsm.model.Profesor;
 import com.example.qqsm.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,8 +18,8 @@ public class ProfesorService {
         this.profesorRepository = profesorRepository;
     }
 
-    public void addProfesor(String nombre, String apellido, String correo, String user, String contrasena) {
-        profesorRepository.save(new Profesor(nombre, apellido, correo,user,contrasena));
+    public void addProfesor(Profesor profesor) {
+        profesorRepository.save(profesor);
     }
 
     public Profesor getProfesorByUserAndPassword(String user, String contrasena) {
@@ -37,8 +39,8 @@ public class ProfesorService {
         profesorRepository.save(profesor);
     }
 
-    public void deleteProfesor(Profesor profesor) {
-        profesorRepository.delete(profesor);
+    public void deleteProfesor(Integer profesor) {
+        profesorRepository.deleteById(profesor);
     }
 
     public List<Profesor> getProfesors()
@@ -46,6 +48,31 @@ public class ProfesorService {
         return (List<Profesor>) profesorRepository.findAll();
     }
 
+    public void addJuego(Profesor profesor, List<Juego> juegos) {
+    }
+
+    public boolean existeUsuario(String nombre) {
+        ArrayList<Profesor> usuarios = (ArrayList<Profesor>) profesorRepository.findAll();
+        for (Profesor usuario : usuarios) {
+            if (usuario.getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Profesor getUsuariosPorNombreYPass(String nombre, String pass) {
+
+        ArrayList<Profesor> usuarios = (ArrayList<Profesor>) profesorRepository.findAll();
+
+        Profesor user = null;
+        for (Profesor usuario : usuarios) {
+            if (usuario.getNombre().equals(nombre) && usuario.getPassword().equals(pass)) {
+                user = usuario;
+            }
+        }
+        return user;
+    }
 }
 
 

@@ -12,4 +12,6 @@ public interface ProfesorRepository extends CrudRepository<Profesor, Long> {
     Profesor getProfesorByUser(String user);
 
     Profesor getProfesorById(int id);
+
+    void deleteById(Integer profesor);
 }

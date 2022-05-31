@@ -1,9 +1,13 @@
 package com.example.qqsm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pregunta")
+@Table(name = "pregunta", indexes = {
+        @Index(name = "fk_pregunta_juego1_idx", columnList = "juego_idjuego")
+})
 public class Pregunta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +22,7 @@ public class Pregunta {
 
     @Column(name = "preguntacol", nullable = false, length = 45)
     private String preguntacol;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "juego_idjuego", nullable = false)

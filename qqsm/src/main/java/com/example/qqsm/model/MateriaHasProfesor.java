@@ -3,7 +3,10 @@ package com.example.qqsm.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "materia_has_profesor")
+@Table(name = "materia_has_profesor", indexes = {
+        @Index(name = "fk_materia_has_profesor_materia1_idx", columnList = "materia_idmateria"),
+        @Index(name = "fk_materia_has_profesor_profesor1_idx", columnList = "profesor_idprofesor")
+})
 public class MateriaHasProfesor {
     @EmbeddedId
     private MateriaHasProfesorId id;

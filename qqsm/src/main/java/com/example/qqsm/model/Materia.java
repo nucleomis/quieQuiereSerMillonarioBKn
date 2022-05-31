@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Materia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idmateria", nullable = false)
+    @Column(name = "idmateria", nullable = true)
     private Integer id;
 
     @Column(name = "nombre_materia", nullable = false, length = 45)
