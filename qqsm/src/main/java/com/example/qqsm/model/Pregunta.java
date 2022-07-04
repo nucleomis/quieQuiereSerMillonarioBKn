@@ -14,7 +14,7 @@ public class Pregunta {
     @Column(name = "idpregunta", nullable = false)
     private Integer id;
 
-    @Column(name = "pregunta", nullable = false, length = 45)
+    @Column(name = "pregunta", nullable = false, length = 200)
     private String pregunta;
 
     @Column(name = "dificultad", nullable = false)

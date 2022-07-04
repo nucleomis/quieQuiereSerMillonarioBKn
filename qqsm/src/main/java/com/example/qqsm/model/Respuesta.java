@@ -15,7 +15,7 @@ public class Respuesta {
     @Column(name = "correcto", nullable = false)
     private Integer correcto;
 
-    @Column(name = "respuesta", nullable = false, length = 45)
+    @Column(name = "respuesta", nullable = false, length = 200)
     private String respuesta;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

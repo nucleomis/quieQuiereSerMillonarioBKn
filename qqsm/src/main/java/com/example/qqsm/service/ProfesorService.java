@@ -54,7 +54,7 @@ public class ProfesorService {
     public boolean existeUsuario(String nombre) {
         ArrayList<Profesor> usuarios = (ArrayList<Profesor>) profesorRepository.findAll();
         for (Profesor usuario : usuarios) {
-            if (usuario.getNombre().equals(nombre)) {
+            if (usuario.getUser().equals(nombre)) {
                 return true;
             }
         }
@@ -67,7 +67,7 @@ public class ProfesorService {
 
         Profesor user = null;
         for (Profesor usuario : usuarios) {
-            if (usuario.getNombre().equals(nombre) && usuario.getPassword().equals(pass)) {
+            if (usuario.getUser().equals(nombre) && usuario.getPassword().equals(pass)) {
                 user = usuario;
             }
         }
